@@ -28,11 +28,11 @@ questions:
   default: "test"
 - variable: rtdb.env.host
   description: "格式 vzdb服务.vzdb所在命名空间"
-  type: service
+  type: string
   group: "Rtdb Vzdb Settings"
   label: vzdb名称
 - variable: rtdb.env.port
-  default: "32235"
+  default: "22235"
   description: "vzdb端口"
   type: string
   group: "Rtdb Vzdb Settings"
