@@ -34,11 +34,3 @@ spec:
         - containerPort: 8040
         resources: {}
       restartPolicy: Always
-      volumes:
-      - name: rtdb-claim0
-        persistentVolumeClaim:
-          claimName: rtdb-claim0
-      - name: rtdb-claim1
-        persistentVolumeClaim:
-          claimName: rtdb-claim1
-          readOnly: true
