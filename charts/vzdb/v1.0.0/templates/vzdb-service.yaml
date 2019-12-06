@@ -5,6 +5,7 @@ metadata:
     app: vzdb
   name: vzdb
 spec:
+  type: ClusterIP
   ports:
   - name: "32235"
     port: 32235

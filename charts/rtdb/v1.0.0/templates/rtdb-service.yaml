@@ -5,6 +5,7 @@ metadata:
     app: rtdb
   name: rtdb
 spec:
+  type: ClusterIP
   ports:
   - name: "30002"
     port: 30002
