@@ -1,23 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: kompose convert -f docker-compose.yml
-    kompose.version: 1.19.0 (f63a961c)
-  creationTimestamp: null
   labels:
     io.kompose.service: vzdb
   name: vzdb
 spec:
   replicas: 1
-  strategy:
-    type: Recreate
+  selector:
+    matchLabels:
+      labels:
+        io.kompose.service: vzdb
   template:
     metadata:
-      annotations:
-        kompose.cmd: kompose convert -f docker-compose.yml
-        kompose.version: 1.19.0 (f63a961c)
-      creationTimestamp: null
       labels:
         io.kompose.service: vzdb
     spec:
@@ -58,4 +52,3 @@ spec:
       - name: vzdb-claim4
         persistentVolumeClaim:
           claimName: vzdb-claim4
-status: {}

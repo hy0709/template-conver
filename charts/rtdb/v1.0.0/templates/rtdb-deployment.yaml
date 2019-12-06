@@ -1,23 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: kompose convert -f docker-compose.yml
-    kompose.version: 1.19.0 (f63a961c)
-  creationTimestamp: null
   labels:
     io.kompose.service: rtdb
   name: rtdb
 spec:
   replicas: 1
-  strategy:
-    type: Recreate
+  selector:
+    matchLabels:
+      labels:
+        io.kompose.service: rtdb
   template:
     metadata:
-      annotations:
-        kompose.cmd: kompose convert -f docker-compose.yml
-        kompose.version: 1.19.0 (f63a961c)
-      creationTimestamp: null
       labels:
         io.kompose.service: rtdb
     spec:
@@ -55,4 +49,3 @@ spec:
         persistentVolumeClaim:
           claimName: rtdb-claim1
           readOnly: true
-status: {}
