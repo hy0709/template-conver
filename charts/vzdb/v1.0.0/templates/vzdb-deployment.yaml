@@ -1,14 +1,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: vzdb
   labels:
     app: vzdb
-  name: vzdb
 spec:
   replicas: 1
   selector:
     matchLabels:
-      labels:
         app: vzdb
   template:
     metadata:
