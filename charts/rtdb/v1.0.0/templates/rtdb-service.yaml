@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
-# metadata:
-#   labels:
-#     io.kompose.service: rtdb
-#   name: rtdb
+metadata:
+  labels:
+    app: rtdb
+  name: rtdb
 spec:
   ports:
   - name: "30002"
