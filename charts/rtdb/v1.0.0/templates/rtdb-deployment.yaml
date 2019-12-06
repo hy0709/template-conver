@@ -2,18 +2,18 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    io.kompose.service: rtdb
+    app: rtdb
   name: rtdb
 spec:
   replicas: 1
   selector:
     matchLabels:
       labels:
-        io.kompose.service: rtdb
+        app: rtdb
   template:
     metadata:
       labels:
-        io.kompose.service: rtdb
+        app: rtdb
     spec:
       containers:
       - env:

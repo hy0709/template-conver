@@ -1,13 +1,9 @@
 apiVersion: v1
 kind: Service
-metadata:
-  annotations:
-    kompose.cmd: kompose convert -f docker-compose.yml
-    kompose.version: 1.19.0 (f63a961c)
-  creationTimestamp: null
-  labels:
-    io.kompose.service: vzdb
-  name: vzdb
+# metadata:
+#   labels:
+#     io.kompose.service: vzdb
+#   name: vzdb
 spec:
   ports:
   - name: "32235"
@@ -17,6 +13,6 @@ spec:
     port: 32136
     targetPort: 22136
   selector:
-    io.kompose.service: vzdb
+    app: vzdb
 status:
   loadBalancer: {}

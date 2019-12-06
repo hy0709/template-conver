@@ -2,18 +2,18 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    io.kompose.service: vzdb
+    app: vzdb
   name: vzdb
 spec:
   replicas: 1
   selector:
     matchLabels:
       labels:
-        io.kompose.service: vzdb
+        app: vzdb
   template:
     metadata:
       labels:
-        io.kompose.service: vzdb
+        app: vzdb
     spec:
       containers:
       - image: docker.orientge.cn:5000/oge/vzdb:2.72.1
