@@ -22,32 +22,30 @@ spec:
         - containerPort: 22136
         resources: {}
         volumeMounts:
-        - mountPath: /etc/localtime
-          name: vzdb-claim0
-          readOnly: true
-        - mountPath: /oge/vzdb/model
-          name: vzdb-claim1
-        - mountPath: /oge/vzdb/cache
-          name: vzdb-claim2
-        - mountPath: /oge/vzdb/data
-          name: vzdb-claim3
-        - mountPath: /oge/vzdb/log
-          name: vzdb-claim4
+          - mountPath: /etc/localtime:ro
+            name: vzdb-localtime
+          - mountPath: /oge/vzdb/model
+            name: vzdb-model
+          - mountPath: /oge/vzdb/cache
+            name: vzdb-cache
+          - mountPath: /oge/vzdb/data
+            name: vzdb-data
+          - mountPath: /oge/vzdb/log
+            name: vzdb-log
       restartPolicy: Always
       volumes:
-      - name: vzdb-claim0
-        persistentVolumeClaim:
-          claimName: vzdb-claim0
-          readOnly: true
-      - name: vzdb-claim1
-        persistentVolumeClaim:
-          claimName: vzdb-claim1
-      - name: vzdb-claim2
-        persistentVolumeClaim:
-          claimName: vzdb-claim2
-      - name: vzdb-claim3
-        persistentVolumeClaim:
-          claimName: vzdb-claim3
-      - name: vzdb-claim4
-        persistentVolumeClaim:
-          claimName: vzdb-claim4
+      - name: vzdb-localtime
+        hostPath:
+          path: /etc/localtime
+      - name: vzdb-model
+        hostPath:
+          path: /home/oge/oge_data/vzdb-volume-{{ .Values.service.vzdb.nodePort}}/model/
+      - name: vzdb-cache
+        hostPath:
+          path: /home/oge/oge_data/vzdb-volume-{{ .Values.service.vzdb.nodePort}}/cache/
+      - name: vzdb-data
+        hostPath:
+          path: /home/oge/oge_data/vzdb-volume-{{ .Values.service.vzdb.nodePort}}/data/
+      - name: vzdb-log
+        hostPath:
+          path: /home/oge/oge_logs/vzdb-volume-{{ .Values.service.vzdb.nodePort}}
