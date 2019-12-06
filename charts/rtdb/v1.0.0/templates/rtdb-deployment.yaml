@@ -33,12 +33,6 @@ spec:
         ports:
         - containerPort: 8040
         resources: {}
-        volumeMounts:
-        - mountPath: /oge/log
-          name: rtdb-claim0
-        - mountPath: /etc/localtime
-          name: rtdb-claim1
-          readOnly: true
       restartPolicy: Always
       volumes:
       - name: rtdb-claim0
