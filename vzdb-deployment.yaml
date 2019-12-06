@@ -1,0 +1,61 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.yml
+    kompose.version: 1.19.0 (f63a961c)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: vzdb
+  name: vzdb
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f docker-compose.yml
+        kompose.version: 1.19.0 (f63a961c)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: vzdb
+    spec:
+      containers:
+      - image: docker.orientge.cn:5000/oge/vzdb:2.72.1
+        name: vzdb-vvv
+        ports:
+        - containerPort: 22235
+        - containerPort: 22136
+        resources: {}
+        volumeMounts:
+        - mountPath: /etc/localtime
+          name: vzdb-claim0
+          readOnly: true
+        - mountPath: /oge/vzdb/model
+          name: vzdb-claim1
+        - mountPath: /oge/vzdb/cache
+          name: vzdb-claim2
+        - mountPath: /oge/vzdb/data
+          name: vzdb-claim3
+        - mountPath: /oge/vzdb/log
+          name: vzdb-claim4
+      restartPolicy: Always
+      volumes:
+      - name: vzdb-claim0
+        persistentVolumeClaim:
+          claimName: vzdb-claim0
+          readOnly: true
+      - name: vzdb-claim1
+        persistentVolumeClaim:
+          claimName: vzdb-claim1
+      - name: vzdb-claim2
+        persistentVolumeClaim:
+          claimName: vzdb-claim2
+      - name: vzdb-claim3
+        persistentVolumeClaim:
+          claimName: vzdb-claim3
+      - name: vzdb-claim4
+        persistentVolumeClaim:
+          claimName: vzdb-claim4
+status: {}

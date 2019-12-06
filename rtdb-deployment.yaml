@@ -1,0 +1,58 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.yml
+    kompose.version: 1.19.0 (f63a961c)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: rtdb
+  name: rtdb
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f docker-compose.yml
+        kompose.version: 1.19.0 (f63a961c)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: rtdb
+    spec:
+      containers:
+      - env:
+        - name: kdm.rtdb.host
+          value: rtdbHost
+        - name: kdm.rtdb.password
+          value: root1234
+        - name: kdm.rtdb.port
+          value: "22235"
+        - name: kdm.rtdb.rule
+          value: .*
+        - name: kdm.rtdb.username
+          value: root
+        - name: spring.application.name
+          value: kdm-rdp-rtdb-vzdb-xiangjiaba
+        image: oge/kdm-rtdb-vzdb:1.2.0
+        name: kdm-rdp-rtdb-vzdb-30002
+        ports:
+        - containerPort: 8040
+        resources: {}
+        volumeMounts:
+        - mountPath: /oge/log
+          name: rtdb-claim0
+        - mountPath: /etc/localtime
+          name: rtdb-claim1
+          readOnly: true
+      restartPolicy: Always
+      volumes:
+      - name: rtdb-claim0
+        persistentVolumeClaim:
+          claimName: rtdb-claim0
+      - name: rtdb-claim1
+        persistentVolumeClaim:
+          claimName: rtdb-claim1
+          readOnly: true
+status: {}

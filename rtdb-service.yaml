@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.yml
+    kompose.version: 1.19.0 (f63a961c)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: rtdb
+  name: rtdb
+spec:
+  ports:
+  - name: "30002"
+    port: 30002
+    targetPort: 8040
+  selector:
+    io.kompose.service: rtdb
+status:
+  loadBalancer: {}
