@@ -30,7 +30,7 @@ spec:
         - name: kdm.rtdb.port
           value: "22235"
         - name: kdm.rtdb.rule
-          value: .*
+          value: ^.{29}[^C].{3}$
         - name: kdm.rtdb.username
           value: root
         - name: spring.application.name
