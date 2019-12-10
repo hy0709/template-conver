@@ -31,5 +31,17 @@ spec:
         ports:
         - containerPort: 8082
         resources: {}
+        volumeMounts:
+          - mountPath: /etc/localtime:ro
+            name: rdp-localtime
+          - mountPath: /oge/log
+            name: rdp-log
       restartPolicy: Always
+      volumes:
+      - name: rdp-localtime
+        hostPath:
+          path: /etc/localtime
+      - name: rdp-log
+        hostPath:
+          path: /home/oge/oge_logs/kdm-rdp-8082
 status: {}
