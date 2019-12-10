@@ -17,7 +17,7 @@ spec:
       containers:
       - env:
         - name: kdm.rtdb.host
-          value: rtdbHost
+          value: {{ .Values.rtdb.env.host}}
         - name: kdm.rtdb.password
           value: root1234
         - name: kdm.rtdb.port
