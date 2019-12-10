@@ -14,7 +14,7 @@ rtdb:
   env:
     name: rtdb
     host: SERVICE_SERVICE_HOST
-    port: 22235
+    port: "22235"
     username: root
     password: root1234
     rule: ^.{29}[^C].{3}$
