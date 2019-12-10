@@ -2,18 +2,16 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: vzdb
-  name: vzdb
+    app: kdm-vzdb
+  name: kdm-vzdb
 spec:
-  type: ClusterIP
+  type: NodePort
   ports:
-  - name: "32235"
-    port: 32235
+  - name: kdm-vzdb-port
+    port: 22235
     targetPort: 22235
-  - name: "32136"
-    port: 32136
-    targetPort: 22136
+    nodePort: 32235
   selector:
-    app: vzdb
+    app: kdm-vzdb
 status:
   loadBalancer: {}

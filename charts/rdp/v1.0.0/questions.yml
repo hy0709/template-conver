@@ -1,0 +1,21 @@
+categories:
+- Oge
+questions:
+- variable: rdp.image
+  default: "oge/kdm-rdp "
+  description: "镜像"
+  type: string
+  group: "Rdp Images Version"
+  label: rdp镜像名称
+- variable: rdp.imageTag
+  default: "4.4.0"
+  description: "镜像版本"
+  type: string
+  group: "Rdp Images Version"
+  label: rtdb-vzdb镜像版本号
+- variable: service.port
+  default: "8082"
+  description: "rdp端口"
+  type: string
+  group: "Rdp Settings"
+  label: rtdb镜像端口

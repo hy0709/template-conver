@@ -2,17 +2,17 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: rtdb
-  name: rtdb
+    app: kdm-rtdb
+  name: kdm-rtdb
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: rtdb
+      app: kdm-rtdb
   template:
     metadata:
       labels:
-        app: rtdb
+        app: kdm-rtdb
     spec:
       containers:
       - env:
@@ -21,7 +21,7 @@ spec:
         - name: kdm.rtdb.password
           value: root1234
         - name: kdm.rtdb.port
-          value: "22235"
+          value: 22235
         - name: kdm.rtdb.rule
           value: ^.{29}[^C].{3}$
         - name: kdm.rtdb.username

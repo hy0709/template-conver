@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: kdm-rdp
+  name: kdm-rdp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kdm-rdp
+  template:
+    metadata:
+      labels:
+        app: kdm-rdp
+    spec:
+      containers:
+      - env:
+        - name: jdbc.database
+        - name: jdbc.password
+        - name: jdbc.port
+        - name: jdbc.username
+        - name: lic.host
+        - name: lic.port
+        image: oge/kdm-rdp:4.4.0
+        name: kdm-rdp-8082
+        ports:
+        - containerPort: 8082
+        resources: {}
+      restartPolicy: Always
+status: {}

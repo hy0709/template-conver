@@ -1,0 +1,12 @@
+apiVersion: v1
+description: rdp最外层Chart.yaml中 
+maintainers:
+- name: zhangsan
+  email: zhangsan@tt.com
+name: rdp
+version: 1.0.0
+appVersion: "4.4.0"
+keywords:
+- oge
+- kdm
+engine: gotpl

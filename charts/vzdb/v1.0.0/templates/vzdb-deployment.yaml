@@ -1,24 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: vzdb
+  name: kdm-vzdb
   labels:
-    app: vzdb
+    app: kdm-vzdb
 spec:
   replicas: 1
   selector:
     matchLabels:
-        app: vzdb
+        app: kdm-vzdb
   template:
     metadata:
       labels:
-        app: vzdb
+        app: kdm-vzdb
     spec:
       containers:
       - image: docker.orientge.cn:5000/oge/vzdb:2.72.1
-        name: vzdb-vvv
+        name: kdm-vzdb
         ports:
-        - containerPort: 22235
+        - name: kdm-vzdb-port
+          containerPort: 22235
         - containerPort: 22136
         resources: {}
         volumeMounts:
