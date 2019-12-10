@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+  labels:
+    app: postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+        app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+      - image: "{{ .Values.postgres.image }}:{{ .Values.postgres.imageTag }}"
+        name: postgres
+        ports:
+        - name: postgres-port
+          containerPort: 5432
+        env:
+        - name: POSTGRES_PASSWORD
+          value: {{ .Values.postgres.env.password | quote }}
+        - name: POSTGRES_DB
+          value: {{ .Values.postgres.env.db | quote }}
+        resources: {}
+        volumeMounts:
+          - mountPath: /var/lib/postgresql/data
+            name: postgres-data
+          - mountPath: /docker-entrypoint-initdb.d
+            name: postgres-init
+          - mountPath: /backup
+            name: postgres-backup
+          - mountPath: /etc/localtime:ro
+            name: postgres-localtime
+      restartPolicy: Always
+      volumes:
+      - name: postgres-localtime
+        hostPath:
+          path: /etc/localtime
+      - name: postgres-data
+        hostPath:
+          path: /home/oge/oge_data/postgres-volume-{{ .Values.service.postgres.nodePort}}/data/
+      - name: postgres-init
+        hostPath:
+          path: /home/oge/oge_data/postgres-volume-{{ .Values.service.postgres.nodePort}}/init/
+      - name: postgres-backup
+        hostPath:
+          path: /home/oge/oge_data/postgres-volume-{{ .Values.service.postgres.nodePort}}/backup/
