@@ -7,7 +7,7 @@ metadata:
 spec:
   type: {{ .Values.service.postgres.type }}
   ports:
-  - name: {{ .Values.service.postgres.port }}
+  - name: postgres-port
     port: 5432
     targetPort: postgres-port
     nodePort: {{ .Values.service.postgres.nodePort }}
