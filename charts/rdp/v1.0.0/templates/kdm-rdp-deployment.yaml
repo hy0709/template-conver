@@ -15,14 +15,18 @@ spec:
         app: kdm-rdp
     spec:
       containers:
+      {{- with .Values.rdp.env }}
       - env:
         - name: jdbc.database
+          value: {{ .database | quote }}
         - name: jdbc.password
+          value: {{ .password | quote }}
         - name: jdbc.port
+          value: {{ .port | quote }}
         - name: jdbc.username
-        - name: lic.host
-        - name: lic.port
-        image: oge/kdm-rdp:4.4.0
+          value: {{ .username | quote }}
+        {{- end }}
+        image: "{{ .Values.rdp.image }}:{{ .Values.rdp.imageTag }}"
         name: kdm-rdp-8082
         ports:
         - containerPort: 8082

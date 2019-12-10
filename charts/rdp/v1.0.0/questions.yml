@@ -8,14 +8,44 @@ questions:
   group: "Rdp Images Version"
   label: rdp镜像名称
 - variable: rdp.imageTag
-  default: "4.4.0"
+  default: "4.5.0"
   description: "镜像版本"
   type: string
   group: "Rdp Images Version"
-  label: rtdb-vzdb镜像版本号
+  label: rdp镜像版本号
 - variable: service.port
   default: "8082"
   description: "rdp端口"
   type: string
   group: "Rdp Settings"
-  label: rtdb镜像端口
+  label: rdp镜像端口
+
+- variable: rdp.env.host
+  description: "格式 postgres地址"
+  type: string
+  group: "rdp postgres Settings"
+  label: postgres名称
+- variable: rdp.env.database
+  description: "格式 postgres database"
+  type: string
+  default: "kdm_rdp" 
+  group: "rdp postgres Settings"
+  label: postgres database名称
+- variable: rdp.env.port
+  default: "5432"
+  description: "postgres端口"
+  type: string
+  group: "rdp postgres Settings"
+  label: postgres镜像端口
+- variable: rdp.env.username
+  default: "postgres"
+  description: "Password used by the MySQL root user"
+  type: string
+  group: "rdp postgres Settings"
+  label: postgres用户名
+- variable: rdp.env.password
+  default: "postgres"
+  description: "Password used by the MySQL root user."
+  type: string
+  group: "rdp postgres Settings"
+  label: postgres密码
