@@ -25,4 +25,4 @@ spec:
       restartPolicy: Always
       env:
       - name: CONSUL_LOCAL_CONFIG
-        value: "{\"disable_update_check\": true}"
+        value: {{ .Values.local.config}}

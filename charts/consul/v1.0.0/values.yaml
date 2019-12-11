@@ -12,6 +12,8 @@ consul:
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
+local:
+  config: "{'disable_update_check': true}"
 
 serviceAccount:
   # Specifies whether a service account should be created
