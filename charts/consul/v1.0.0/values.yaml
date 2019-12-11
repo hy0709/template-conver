@@ -33,6 +33,7 @@ securityContext: {}
 
 service:
     type: ClusterIP
+    port: 8500
 
 ingress:
   enabled: false
