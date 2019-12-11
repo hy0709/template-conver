@@ -25,4 +25,4 @@ spec:
       restartPolicy: Always
       env:
       - name: CONSUL_LOCAL_CONFIG
-        value: {{ .Values.local.config}}
+        value: {{ .Values.local.config  | quote}}
