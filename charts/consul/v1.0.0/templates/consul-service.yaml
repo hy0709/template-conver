@@ -6,6 +6,7 @@ metadata:
   name: consul
 spec:
   # type: {{ .Values.service.type}}
+  clusterIP: None
   ports:
   - port: 8500
     targetPort: 8500
