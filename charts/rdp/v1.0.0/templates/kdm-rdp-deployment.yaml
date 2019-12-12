@@ -20,7 +20,7 @@ spec:
         - name: spring.profiles.active
           value: reg_consul,alias_none
         - name: kdm.reg.host
-          value: {{ .Values.rdp.env.reg.host}}
+          value: {{ .reg.host}}
         - name: jdbc.database
           value: {{ .database | quote }}
         - name: jdbc.password
