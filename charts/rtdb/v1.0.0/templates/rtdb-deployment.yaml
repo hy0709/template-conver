@@ -16,6 +16,8 @@ spec:
     spec:
       containers:
       - env:
+        - name: spring.profiles.active
+          value: reg_consul,alias_none
         - name: kdm.reg.host
           value: {{ .Values.rtdb.env.reg.host}}
         - name: kdm.rtdb.host
