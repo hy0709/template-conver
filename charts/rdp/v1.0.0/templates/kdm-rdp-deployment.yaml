@@ -17,9 +17,7 @@ spec:
       containers:
       {{- with .Values.rdp.env }}
       - env:
-        - name: spring.profiles.active
-          value: reg_consul,alias_none
-        - name: reg.host
+        - name: spring.cloud.consul.host
           value: {{ .reg.host}}
         - name: jdbc.database
           value: {{ .database | quote }}
