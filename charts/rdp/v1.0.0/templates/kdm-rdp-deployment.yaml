@@ -19,7 +19,7 @@ spec:
       - env:
         - name: spring.profiles.active
           value: reg_consul,alias_none
-        - name: kdm.reg.host
+        - name: reg.host
           value: {{ .reg.host}}
         - name: jdbc.database
           value: {{ .database | quote }}
