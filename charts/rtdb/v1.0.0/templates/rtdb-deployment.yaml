@@ -16,6 +16,8 @@ spec:
     spec:
       containers:
       - env:
+        - name: reg.host
+          value: {{ .Values.rtdb.env.reg.host}}
         - name: kdm.rtdb.host
           value: {{ .Values.rtdb.env.host}}
         - name: kdm.rtdb.password

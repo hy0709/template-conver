@@ -20,6 +20,12 @@ questions:
   group: "Rtdb Vzdb Settings"
   label: rtdb镜像端口
 
+- variable: rtdb.env.reg.host
+  description: "reg.host"
+  type: string
+  group: Consul Host"
+  label: vzdb名称
+
 - variable: rtdb.env.name
   description: "与库无关信息：如桐子林的vzdb与库无关--写成 vzdb_tzl(不得含有中文)"
   type: string
