@@ -20,6 +20,12 @@ questions:
   group: "Rdp Settings"
   label: rdp镜像端口
 
+- variable: rdp.env.reg.host
+  description: "reg.host"
+  type: string
+  group: Consul Host"
+  label: vzdb名称
+
 - variable: rdp.env.host
   description: "格式 postgres地址"
   type: string
