@@ -15,10 +15,12 @@ spec:
         app: kdm-rdp
     spec:
       containers:
-      {{- with .Values.rdp.env }}
       - env:
         - name: spring.cloud.consul.host
-          value: {{ .reg.host}}
+          value: {{ .Values.rdp.env.reg.host}}
+        {{- with .Values.rdp.env.postgres }}
+        - name: jdbc.host
+          value: {{ .host | quote }}
         - name: jdbc.database
           value: {{ .database | quote }}
         - name: jdbc.password

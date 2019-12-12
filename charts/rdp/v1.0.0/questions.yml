@@ -26,30 +26,30 @@ questions:
   group: Consul Host"
   label: vzdb名称
 
-- variable: rdp.env.host
+- variable: rdp.env.postgres.host
   description: "格式 postgres地址"
   type: string
   group: "rdp postgres Settings"
   label: postgres名称
-- variable: rdp.env.database
+- variable: rdp.env.postgres.database
   description: "格式 postgres database"
   type: string
   default: "kdm_rdp" 
   group: "rdp postgres Settings"
   label: postgres database名称
-- variable: rdp.env.port
+- variable: rdp.env.postgres.port
   default: "5432"
   description: "postgres端口"
   type: string
   group: "rdp postgres Settings"
   label: postgres镜像端口
-- variable: rdp.env.username
+- variable: rdp.env.postgres.username
   default: "postgres"
   description: "Password used by the MySQL root user"
   type: string
   group: "rdp postgres Settings"
   label: postgres用户名
-- variable: rdp.env.password
+- variable: rdp.env.postgres.password
   default: "postgres"
   description: "Password used by the MySQL root user."
   type: string
