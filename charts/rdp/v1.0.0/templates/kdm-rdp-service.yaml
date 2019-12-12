@@ -9,7 +9,7 @@ spec:
   ports:
   - name: kdm-rdp-port
     port: 8082
-    targetPort: kdm-vzdb-port
+    targetPort: 8082
     nodePort: 8082
   selector:
     app: kdm-rdp
