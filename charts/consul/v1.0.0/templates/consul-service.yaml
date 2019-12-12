@@ -9,7 +9,7 @@ spec:
   ports:
   - port: 8500
     targetPort: 8500
-    nodePort: 8500
+    # nodePort: 8500
     name: ui
   selector:
     app: consul
