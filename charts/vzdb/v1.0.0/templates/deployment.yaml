@@ -1,26 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kdm-vzdb
+  name: {{ include "vzdb.name" . }}
   labels:
-    app: kdm-vzdb
+    app: {{ include "vzdb.name" . }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-        app: kdm-vzdb
+        app: {{ include "vzdb.name" . }}
   template:
     metadata:
       labels:
-        app: kdm-vzdb
+        app: {{ include "vzdb.name" . }}
     spec:
       containers:
-      - image: docker.orientge.cn:5000/oge/vzdb:2.72.1
-        name: kdm-vzdb
+      - image: "{{ .Values.vzdb.image }}:{{ .Values.vzdb.imageTag }}"
+        name: {{ .Values.vzdb.containerName }}
         ports:
         - name: kdm-vzdb-port
-          containerPort: 22235
-        - containerPort: 22136
+          containerPort: {{ .Values.service.vzdb.internalPort}}
+        - containerPort: {{ .Values.service.vzevt.internalPort}}
         resources: {}
         volumeMounts:
           - mountPath: /etc/localtime:ro
@@ -40,13 +40,13 @@ spec:
           path: /etc/localtime
       - name: vzdb-model
         hostPath:
-          path: /home/oge/oge_data/vzdb-volume-{{ .Values.service.vzdb.nodePort}}/model/
+          path: /home/oge/oge_data/vzdb-{{ .Values.service.vzdb.externalPort}}/model/
       - name: vzdb-cache
         hostPath:
-          path: /home/oge/oge_data/vzdb-volume-{{ .Values.service.vzdb.nodePort}}/cache/
+          path: /home/oge/oge_data/vzdb-{{ .Values.service.vzdb.externalPort}}/cache/
       - name: vzdb-data
         hostPath:
-          path: /home/oge/oge_data/vzdb-volume-{{ .Values.service.vzdb.nodePort}}/data/
+          path: /home/oge/oge_data/vzdb-{{ .Values.service.vzdb.externalPort}}/data/
       - name: vzdb-log
         hostPath:
-          path: /home/oge/oge_logs/vzdb-volume-{{ .Values.service.vzdb.nodePort}}
+          path: /home/oge/oge_logs/vzdb-volume-{{ .Values.service.vzdb.externalPort}}

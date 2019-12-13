@@ -2,34 +2,43 @@ categories:
 - Oge
 - Database
 questions:
+- variable: vzdb.containerName
+  description: "vzdb 容器名称 格式推荐为vzdb_xiangjiaba ,表示向家坝电厂的vzdb"
+  label: vzdb 名称
+  default: vzdb_xiangjiaba
+  required: true
+  type: string
+  group: "Vzdb 配置"
+
 - variable: defaultImage
   default: true
-  description: "Use default vzdb images"
-  label: Use Default vzdb Images
+  description: "选择是否使用vzdb的默认镜像"
+  label: 使用默认的vzdb镜像（v2.72.1）
   type: boolean
   show_subquestion_if: false
-  group: "Vzdb Container Images"
+  group: "Vzdb 镜像"
   subquestions:
   - variable: vzdb.image
     default: "docker.orientge.cn:5000/oge/vzdb"
     description: "需要的vzdb镜像名称"
     type: string
+    required: true
     label: vzdb镜像名称
   - variable: vzdb.imageTag
     default: "2.72.1"
     description: "需要的vzdb镜像版本"
     type: string
+    required: true
     label: vzdb镜像版本号
   - variable: service.vzdb.nodePort
-    default: "32235"
-    description: "端口"
+    default: "22235"
+    description: "vzdb端口"
     type: string
     label: 镜像端口
-  - variable: service.vzevt.port
-    default: "32136"
-    description: "vzevt端口"
-    type: string
-    label: vzevt端口
+    required: true
+
+
+
 
 - variable: fullnameOverride
   description: "vzdb名称"

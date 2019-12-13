@@ -5,7 +5,7 @@
 replicaCount: 1
 
 vzdb:
-  name: vzdb
+  containerName: vzdb_xiangjiaba
   image: "docker.orientge.cn:5000/oge/vzdb"
   imageTag: "2.72.1"
 
@@ -34,10 +34,10 @@ securityContext: {}
 service:
   vzdb:
     type: NodePort
-    port: 22235
-    nodePort: 32235
+    internalPort: 22235
+    externalPort: 22235
   vzevt:
-    port: 32136
+    internalPort: 22136
 
 
 ingress:

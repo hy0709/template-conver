@@ -4,20 +4,22 @@
 
 replicaCount: 1
 
-rtdb:
-  vzdb:
-    name: rtdb-vzdb
-    image: "oge/kdm-rtdb-vzdb"
-    imageTag: "1.2.0"
-    enabled: true
-    url: ""
-  env:
-    name: rtdb
-    host: SERVICE_SERVICE_HOST
-    port: "22235"
-    username: root
-    password: root1234
-    rule: ^.{29}[^C].{3}$
+kdm.rdp.rtdb.vzdb:
+  # containerName: rtdb-vzdb
+  image: "oge/kdm-rtdb-vzdb"
+  imageTag: "1.2.0"
+
+env:
+  consul.active: reg_consul,alias_none
+  reg.host:
+  rtdb.host:
+
+  name: rtdb
+  host: SERVICE_SERVICE_HOST
+  port: "22235"
+  username: root
+  password: root1234
+  rule: ^.{29}[^C].{3}$
 
 imagePullSecrets: []
 nameOverride: ""
@@ -43,7 +45,8 @@ securityContext: {}
 
 service:
   type: NodePort
-  port: 30001
+  internalPort: 8040
+  externalPort: 8040
 
 ingress:
   enabled: false

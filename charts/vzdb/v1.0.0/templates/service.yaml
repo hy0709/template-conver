@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: {{ include "vzdb.name" . }}
+  name: {{ .Values.vzdb.containerName }}
+spec:
+  type: {{ .Values.service.vzdb.type }}
+  ports:
+  - name: kdm-vzdb-port
+    port: {{ .Values.service.vzdb.internalPort }}
+    targetPort: {{ .Values.service.vzdb.internalPort }}
+    nodePort: {{ .Values.service.vzdb.externalPort }}
+  selector:
+    app: {{ include "vzdb.name" . }}
+status:
+  loadBalancer: {}

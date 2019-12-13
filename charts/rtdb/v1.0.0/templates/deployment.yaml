@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: {{ include "kdm.rdp.rtdb.vzdb.name" . }}
+  name: {{ include "kdm.rdp.rtdb.vzdb.name" . }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ include "kdm.rdp.rtdb.vzdb.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "kdm.rdp.rtdb.vzdb.name" . }}
+    spec:
+      containers:
+      - image: "{{ .Values.kdm.rdp.rtdb.vzdb.image }}:{{ .Values.kdm.rdp.rtdb.vzdb.imageTag }}"
+        name: {{ include "kdm.rdp.rtdb.vzdb.containerName" . }}
+        ports:
+        - containerPort: {{ .Values.service.internalPort}}
+        env:
+        - name: spring.profiles.active
+          value: {{ .Values.env.consul.active }}
+        - name: kdm.reg.host
+          value:  {{ include "env.reg.host" . }}
+        - name: kdm.rtdb.host
+          value: {{ include "env.rtdb.host" . }}
+        - name: kdm.rtdb.password
+          value: root1234
+        - name: kdm.rtdb.port
+          value: "22235"
+        - name: kdm.rtdb.rule
+          value: ^.{29}[^C].{3}$
+        - name: kdm.rtdb.username
+          value: root
+        # - name: spring.application.name
+        #   value: kdm-rdp-rtdb-vzdb-xiangjiaba
+        resources: {}
+      restartPolicy: Always

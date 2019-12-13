@@ -1,6 +1,28 @@
 categories:
 - Oge
 questions:
+- variable: kdm.rdp.rtdb.vzdb.containerName
+  description: "与库无关信息：如桐子林的vzdb与库无关--写成 vzdb_tzl(不得含有中文)"
+  type: string
+  required: true
+  group: "kdm-rdp-rtdb-vzdb 配置"
+  label: 服务名称
+- variable: env.reg.host
+  description: "consul信息：如名称为consul的服务在default命名空间内--写成 consul.default"
+  type: string
+  required: true
+  group: Consul 配置"
+  label: Consul名称
+
+- variable: env.rtdb.host
+  description: "vzdb信息：如名称为vzdb_xiangjiaba的vzdb服务在default命名空间内--写成 vzdb_xiangjiaba.default"
+  type: string
+  required: true
+  group: 实时数据库配置"
+  label: 实时数据库名称
+
+
+
 - variable: rtdb.vzdb.image
   default: "oge/kdm-rtdb-vzdb"
   description: "需要的rtdb-vzdb镜像名称"
@@ -20,18 +42,9 @@ questions:
   group: "Rtdb Vzdb Settings"
   label: rtdb镜像端口
 
-- variable: rtdb.env.reg.host
-  description: "reg.host"
-  type: string
-  group: Consul Host"
-  label: Consul名称
 
-- variable: rtdb.env.name
-  description: "与库无关信息：如桐子林的vzdb与库无关--写成 vzdb_tzl(不得含有中文)"
-  type: string
-  group: "Rtdb Vzdb Settings"
-  label: 服务名称
-  default: "test"
+
+
 - variable: rtdb.env.host
   description: "格式 vzdb服务.vzdb所在命名空间"
   type: string
