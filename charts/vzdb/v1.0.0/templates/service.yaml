@@ -4,7 +4,7 @@ namespace: {{ .Release.Namespace | quote }}
 metadata:
   labels:
 {{ include "vzdb.labels" . | indent 4 }}
-  name: {{ .Values.vzdb.containerName }}
+  name: {{ include "vzdb.fullname" . }}
 spec:
   type: {{ .Values.service.vzdb.type }}
   ports:
@@ -13,7 +13,7 @@ spec:
     targetPort: kdm-vzdb-port
     nodePort: {{ .Values.service.vzdb.externalPort }}
   selector:
-    app: {{ include "vzdb.name" . }}
+    app: {{ include "vzdb.fullname" . }}
     release: {{ .Release.Name }}
 status:
   loadBalancer: {}

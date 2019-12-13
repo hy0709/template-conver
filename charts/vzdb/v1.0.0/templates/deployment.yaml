@@ -2,19 +2,19 @@ apiVersion: apps/v1
 kind: Deployment
 namespace: {{ .Release.Namespace | quote }}
 metadata:
-  name: {{ .Values.vzdb.containerName }}
+  name: {{ include "vzdb.fullname" . }}
   labels:
 {{ include "vzdb.labels" . | indent 4 }}   
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ include "vzdb.name" . }}
+      app: {{ include "vzdb.fullname" . }}
       release: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: {{ include "vzdb.name" . }}
+        app: {{ include "vzdb.fullname" . }}
         release: {{ .Release.Name }}
     spec:
       containers:
