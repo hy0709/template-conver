@@ -1,18 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
+# namespace: {{ .Release.Namespace | quote }}
 metadata:
   name: {{ .Values.vzdb.containerName }}
   labels:
-    app: {{ .Values.vzdb.containerName }}
+ {{ include "rtdb-vzdb.labels" . | indent 4 }}   
 spec:
   replicas: 1
   selector:
     matchLabels:
-        app: {{ .Values.vzdb.containerName }}
+      app.kubernetes.io/name: {{ include "vzdb.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+      app.kubernetes.io/managed-by: {{ .Release.Service }}
+      namespace: {{ .Release.Namespace }}
   template:
     metadata:
       labels:
-        app: {{ .Values.vzdb.containerName }}
+        app.kubernetes.io/name: {{ include "vzdb.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+        app.kubernetes.io/managed-by: {{ .Release.Service }}
+        namespace: {{ .Release.Namespace }}
     spec:
       containers:
       - image: "{{ .Values.vzdb.image }}:{{ .Values.vzdb.imageTag }}"
