@@ -19,7 +19,8 @@ spec:
     spec:
       containers:
       - image: "{{ .Values.vzdb.image }}:{{ .Values.vzdb.imageTag }}"
-        name: {{ .Values.vzdb.containerName }}
+        # name: {{ .Values.vzdb.containerName }}
+        name: {{ .Chart.Name }}
         ports:
         - name: kdm-vzdb-port
           containerPort: {{ .Values.service.vzdb.internalPort}}
