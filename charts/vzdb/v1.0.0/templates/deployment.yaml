@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   name: {{ .Values.vzdb.containerName }}
   labels:
- {{ include "rtdb-vzdb.labels" . | indent 4 }}   
+{{ include "vzdb.labels" . | indent 4 }}   
 spec:
   replicas: 1
   selector:
