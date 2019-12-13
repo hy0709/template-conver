@@ -36,12 +36,3 @@ questions:
     type: string
     label: 镜像端口
     required: true
-
-
-
-
-- variable: fullnameOverride
-  description: "vzdb名称"
-  type: string
-  group: "Vzdb Settings"
-  label: 服务名称
