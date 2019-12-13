@@ -1,6 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
-# namespace: {{ .Release.Namespace | quote }}
+namespace: {{ .Release.Namespace | quote }}
 metadata:
   name: {{ .Values.vzdb.containerName }}
   labels:
@@ -9,17 +9,13 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "vzdb.name" . }}
-      app.kubernetes.io/instance: {{ .Release.Name }}
-      app.kubernetes.io/managed-by: {{ .Release.Service }}
-      namespace: {{ .Release.Namespace }}
+      app: {{ include "vzdb.name" . }}
+      release: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: {{ include "vzdb.name" . }}
-        app.kubernetes.io/instance: {{ .Release.Name }}
-        app.kubernetes.io/managed-by: {{ .Release.Service }}
-        namespace: {{ .Release.Namespace }}
+        app: {{ include "vzdb.name" . }}
+        release: {{ .Release.Name }}
     spec:
       containers:
       - image: "{{ .Values.vzdb.image }}:{{ .Values.vzdb.imageTag }}"

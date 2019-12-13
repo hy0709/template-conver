@@ -17,12 +17,8 @@ Create chart name and version as used by the chart label.
 Common labels
 */}}
 {{- define "vzdb.labels" -}}
-app.kubernetes.io/name: {{ include "vzdb.name" . }}
-helm.sh/chart: {{ include "vzdb.chart" . }}
-app.kubernetes.io/instance: {{ .Release.Name }}
-{{- if .Chart.AppVersion }}
-app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
-{{- end }}
-app.kubernetes.io/managed-by: {{ .Release.Service }}
-namespace: {{ .Release.Namespace }}
+app: {{ include "vzdb.name" . }}
+chart: {{ include "vzdb.chart" . }}
+release: {{ .Release.Name }}
+heritage: {{ .Release.Service }}
 {{- end -}}
