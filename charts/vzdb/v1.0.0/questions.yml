@@ -2,13 +2,13 @@ categories:
 - Oge
 - Database
 questions:
-- variable: vzdb.containerName
-  description: "vzdb 容器名称 格式推荐为vzdb-xiangjiaba ,表示向家坝电厂的vzdb"
-  label: vzdb 名称
-  default: vzdb-xiangjiaba
-  required: true
-  type: string
-  group: "Vzdb 配置"
+# - variable: vzdb.containerName
+#   description: "vzdb 容器名称 格式推荐为vzdb-xiangjiaba ,表示向家坝电厂的vzdb"
+#   label: vzdb 名称
+#   default: vzdb-xiangjiaba
+#   required: true
+#   type: string
+#   group: "Vzdb 配置"
 
 - variable: defaultImage
   default: true
