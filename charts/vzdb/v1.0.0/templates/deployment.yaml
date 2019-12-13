@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "vzdb.name" . }}
+  name: {{ .Values.vzdb.containerName }}
   labels:
-    app: {{ include "vzdb.name" . }}
+    app: {{ .Values.vzdb.containerName }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-        app: {{ include "vzdb.name" . }}
+        app: {{ .Values.vzdb.containerName }}
   template:
     metadata:
       labels:
-        app: {{ include "vzdb.name" . }}
+        app: {{ .Values.vzdb.containerName }}
     spec:
       containers:
       - image: "{{ .Values.vzdb.image }}:{{ .Values.vzdb.imageTag }}"
