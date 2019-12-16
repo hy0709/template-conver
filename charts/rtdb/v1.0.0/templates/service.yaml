@@ -8,9 +8,9 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   ports:
-  - name: kdm-rtdb-vzdb-port
+  - name: rtdb-vzdb-port
     port: {{ .Values.service.externalPort }}
-    targetPort: kdm-rtdb-vzdb-port
+    targetPort: rtdb-vzdb-port
     nodePort: {{ .Values.service.externalPort }}
   selector:
     app: {{ include "rtdb.vzdb.fullname" . }}
