@@ -25,14 +25,12 @@ spec:
         - name: kdm-rtdb-port
           containerPort: {{ .Values.service.internalPort}}
         env:
-        - name: spring.profiles.active
-          value: {{ .Values.env.consul.active }}
-        - name: kdm.reg.host
-          value:  {{ include "reg.host" . }}
-          # value:  {{ include "env.reg.host" . }}
+        # - name: spring.profiles.active
+        #   value: {{ .Values.env.consul.active }}
+        # - name: kdm.reg.host
+        #   value:  {{ include "reg.host" . }}
         - name: kdm.rtdb.host
           value: {{ include "rtdb.host" . }}
-          # value: {{ include "env.rtdb.host" . }}
         - name: kdm.rtdb.port
           value:  {{ .Values.env.port}}
         - name: kdm.rtdb.password
