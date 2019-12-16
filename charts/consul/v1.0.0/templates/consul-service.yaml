@@ -1,18 +1,19 @@
 apiVersion: v1
 kind: Service
+namespace: {{ .Release.Namespace | quote }}
 metadata:
   labels:
-    app: consul
-  name: consul
+{{ include "consul.labels" . | indent 4 }}
+  name: {{ include "consul.fullname" . }}
 spec:
-  # type: {{ .Values.service.type}}
-  clusterIP: None
+  type: {{ .Values.service.type}}
   ports:
-  - port: 8500
-    targetPort: 8500
-    # nodePort: 8500
-    name: ui
+  - port: {{ .Values.service.internalPort}}
+    targetPort: ui-port
+    nodePort: {{ .Values.service.internalPort}}
+    name: ui-port
   selector:
-    app: consul
+    app: {{ include "consul.fullname" . }}
+    release: {{ .Release.Name }}
 status:
   loadBalancer: {}

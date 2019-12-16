@@ -1,24 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
+namespace: {{ .Release.Namespace | quote }}
 metadata:
-  name: consul
+  name: {{ include "consul.fullname" . }}
   labels:
-    app: consul
+{{ include "consul.labels" . | indent 4 }}   
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-        app: consul
+      app: {{ include "consul.fullname" . }}
+      release: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: consul
+        app: {{ include "consul.fullname" . }}
+        release: {{ .Release.Name }}
     spec:
       containers:
       - image: "{{ .Values.consul.image }}:{{ .Values.consul.imageTag }}"
         name: consul
         ports:
-        - containerPort: 8500
+        - name: ui-port
+          containerPort: {{ .Values.service.internalPort}}
         - containerPort: 8600
         - containerPort: 8300
         resources: {}

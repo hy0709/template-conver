@@ -8,13 +8,12 @@ questions:
 #   group: "kdm-rdp-rtdb-vzdb 配置"
 #   label: 服务名称
 
-
-# - variable: env.reg.host
-#   description: "consul信息：与库无关所在命名空间内的consul服务名称"
-#   type: string
-#   required: true
-#   group: Consul 配置"
-#   label: Consul 服务
+- variable: env.reg.host
+  description: "consul信息：与库无关所在命名空间内的consul服务名称"
+  type: string
+  required: true
+  group: Consul 配置"
+  label: Consul 服务
 
 - variable: rtdb.vzdb.image
   default: "oge/kdm-rtdb-vzdb"

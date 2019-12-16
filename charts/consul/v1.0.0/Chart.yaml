@@ -2,13 +2,14 @@ name: consul
 version: 1.0.0
 apiVersion: v1
 appVersion: "0.7.5"
-description: 这里是应用的剪短描述
+description: Consul 服务发现集群 服务选择连接 consul-main
 keywords:
-- consul
+- 通用组件
+icon: file://./catalogIcon-consul.png
 # home: https://mariadb.org 项目地址 （可选）
 #sources: （可选  当前chart的下载地址）
 #- https://github.com/bitnami/bitnami-docker-mariadb
 maintainers:
-  - name: 张三
-    email: zahngsan@gmail.com
+  - name: 奥技异
+    # email: zahngsan@gmail.com
 engine: gotpl

@@ -34,9 +34,9 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-    # type: NodePort
-    port: 8500
-
+    type: NodePort
+    internalPort: 8500
+    externalPort: 8500
 ingress:
   enabled: false
   annotations: {}
