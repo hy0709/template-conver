@@ -22,7 +22,7 @@ questions:
     type: string
     label: postgres镜像版本号
 
-- variable: service.postgres.nodePort
+- variable: service.postgres.externalPort
   default: "5432"
   description: "数据库端口号"
   type: string
