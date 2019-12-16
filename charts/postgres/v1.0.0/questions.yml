@@ -23,11 +23,11 @@ questions:
     label: postgres镜像版本号
 
 - variable: service.postgres.nodePort
-    default: "5432"
-    description: "数据库端口号"
-    type: string
-    required: true
-    label: "kdm.rdp.postgre.port"
+  default: "5432"
+  description: "数据库端口号"
+  type: string
+  required: true
+  label: "kdm.rdp.postgre.port"
 
 - variable: postgres.env.password
   description: "数据库密码"
