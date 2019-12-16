@@ -31,10 +31,9 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  postgres:
-    type: NodePort
-    internalPort: 5432
-    externalPort: 5432
+  type: NodePort
+  internalPort: 5432
+  externalPort: 5432
 
 
 ingress:
