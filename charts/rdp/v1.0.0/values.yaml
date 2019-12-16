@@ -5,7 +5,7 @@
 replicaCount: 1
 
 rdp:
-  image: "oge/kdm-rdp "
+  image: "oge/kdm-rdp"
   imageTag: "4.5.0"
 
 imagePullSecrets: []
