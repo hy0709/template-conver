@@ -28,13 +28,13 @@ spec:
         - name: kdm.rtdb.host
           value: "hoosst"
         - name: kdm.rtdb.port
-          value: {{ .Values.env.port }}
+          value: {{ .Values.env.port | quote }}
         - name: kdm.rtdb.password
-          value: {{ .Values.env.password }}
+          value: {{ .Values.env.password | quote }}
         - name: kdm.rtdb.username
-          value: {{ .Values.env.username }}
+          value: {{ .Values.env.username | quote }}
         - name: kdm.rtdb.rule
-          value: {{ .Values.env.rule }}
+          value: {{ .Values.env.rule | quote }}
         resources: {}
         volumeMounts:
           - mountPath: /etc/localtime:ro
