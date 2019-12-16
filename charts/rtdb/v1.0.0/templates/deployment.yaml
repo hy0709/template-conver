@@ -23,18 +23,18 @@ spec:
         name: {{ .Chart.Name }}
         ports:
         - name: kdm-rtdb-port
-          containerPort: {{ .Values.service.internalPort}}
+          containerPort: {{ .Values.service.internalPort }}
         env:
         - name: kdm.rtdb.host
-          value: hoosst
+          value: "hoosst"
         - name: kdm.rtdb.port
-          value:  {{ .Values.env.port}}
+          value: {{ .Values.env.port }}
         - name: kdm.rtdb.password
-          value: {{ .Values.env.password}}
+          value: {{ .Values.env.password }}
         - name: kdm.rtdb.username
-          value: {{ .Values.env.username}}
+          value: {{ .Values.env.username }}
         - name: kdm.rtdb.rule
-          value: {{ .Values.env.rule}}
+          value: {{ .Values.env.rule }}
         resources: {}
         volumeMounts:
           - mountPath: /etc/localtime:ro
