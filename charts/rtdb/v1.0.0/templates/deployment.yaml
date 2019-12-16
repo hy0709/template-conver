@@ -26,7 +26,7 @@ spec:
           containerPort: {{ .Values.service.internalPort }}
         env:
         - name: spring.profiles.active
-          value: {{ .Values.env.consul.active }}
+          value: {{ .Values.env.consul.active | quote }}
         - name: kdm.reg.host
           value:  {{ include "reg.host" . }}
         - name: kdm.rtdb.host
