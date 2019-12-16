@@ -29,13 +29,6 @@ questions:
   required: true
   label: "kdm.rdp.postgre.port"
 
-- variable: postgres.env.password
-  description: "数据库密码"
-  default: "postgres"
-  type: string
-  required: true
-  group: "postgres 配置"
-  label: "kdm.rdp.postgre.password"
 - variable: postgres.env.db
   description: "数据库名称"
   default: "kdm_rdp"
@@ -43,3 +36,10 @@ questions:
   required: true
   group: "postgres 配置"
   label: "kdm.rdp.postgre.name"
+- variable: postgres.env.password
+  description: "数据库密码"
+  default: "postgres"
+  type: string
+  required: true
+  group: "postgres 配置"
+  label: "kdm.rdp.postgre.password"

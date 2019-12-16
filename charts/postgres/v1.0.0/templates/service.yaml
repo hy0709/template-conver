@@ -3,8 +3,8 @@ kind: Service
 namespace: {{ .Release.Namespace | quote }}
 metadata:
   labels:
-{{ include "rtdb.postgres.labels" . | indent 4 }}   
-  name: {{ include "rtdb.postgres.fullname" . }}
+{{ include "postgres.labels" . | indent 4 }}   
+  name: {{ include "postgres.fullname" . }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -13,7 +13,7 @@ spec:
     targetPort: postgres-port
     nodePort: {{ .Values.service.externalPort }}
   selector:
-    app: {{ include "rtdb.postgres.fullname" . }}
+    app: {{ include "postgres.fullname" . }}
     release: {{ .Release.Name }}
 status:
   loadBalancer: {}
