@@ -38,18 +38,3 @@ If release name contains chart name it will be used as a full name.
 {{- .Release.Name | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 {{- end -}}
-
-{{/*
-Create consul host as used by the chart label.
-*/}}
-{{- define "reg.host" -}}
-{{- printf "%s.%s.%s" .Values.env.reg.host .Release.Namespace "svc.cluster.local" | replace "+" "." | trunc 63 | trimSuffix "." -}}
-{{- end -}}
-
-
-{{/*
-Create rtdb host as used by the chart label.
-*/}}
-{{- define "rtdb.host" -}}
-{{- printf "%s.%s.%s" .Values.env.rtdb.host .Release.Namespace "svc.cluster.local" | replace "+" "." | trunc 63 | trimSuffix "." -}}
-{{- end -}}
