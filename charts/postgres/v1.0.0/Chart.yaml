@@ -2,13 +2,15 @@ name: postgres
 version: 1.0.0
 apiVersion: v1
 appVersion: "9.3"
-description: 这里是应用的剪短描述
+description: Postgres
 keywords:
+- 通用组件
 - database
+icon: file://./catalogIcon-postgres.png
 # home: https://mariadb.org 项目地址 （可选）
 #sources: （可选  当前chart的下载地址）
 #- https://github.com/bitnami/bitnami-docker-mariadb
 maintainers:
-  - name: 张三
-    email: zahngsan@gmail.com
+  - name: 奥技异
+    # email: zahngsan@gmail.com
 engine: gotpl

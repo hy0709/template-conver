@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+namespace: {{ .Release.Namespace | quote }}
+metadata:
+  name: {{ include "rdp.fullname" . }}
+  labels:
+    app:
+{{ include "rdp.labels" . | indent 4 }}   
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "rdp.fullname" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "rdp.fullname" . }}
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+      - image: "{{ .Values.rdp.image }}:{{ .Values.rdp.imageTag }}"
+        name: {{ .Chart.Name }}
+        ports:
+        - name: kdm-rdp-port
+          containerPort: {{ .Values.service.internalPort }}
+        env:
+        - name: spring.cloud.consul.host
+          value: {{ include "reg.host" . }}
+        - name: jdbc.host
+          value: {{ include "jdbc.host" . }}
+        - name: jdbc.database
+          value: {{ .Values.env.database | quote }}
+        - name: jdbc.password
+          value: {{ .Values.env.password | quote }}
+        - name: jdbc.port
+          value: {{ .Values.env.port | quote }}
+        - name: jdbc.username
+          value: {{ .Values.env.username | quote }}
+        resources: {}
+        volumeMounts:
+          - mountPath: /etc/localtime:ro
+            name: rdp-localtime
+          - mountPath: /oge/log
+            name: rdp-log
+      restartPolicy: Always
+      volumes:
+      - name: rdp-localtime
+        hostPath:
+          path: /etc/localtime
+      - name: rdp-log
+        hostPath:
+          path: /home/oge/oge_logs/kdm-rdp-{{ .Values.service.externalPort}}/
+status: {}

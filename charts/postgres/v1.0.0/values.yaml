@@ -5,7 +5,6 @@
 replicaCount: 1
 
 postgres:
-  name: postgres
   image: "postgres"
   imageTag: "9.3"
 
@@ -34,8 +33,8 @@ securityContext: {}
 service:
   postgres:
     type: NodePort
-    port: 5432
-    nodePort: 5432
+    internalPort: 5432
+    externalPort: 5432
 
 
 ingress:

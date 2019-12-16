@@ -3,37 +3,43 @@ categories:
 questions:
 - variable: defaultImage
   default: true
-  description: "Use default postgres images"
-  label: Use Default postgres Images
+  description: "选择是否使用默认的postgres镜像"
+  label: 默认镜像（v9.3.0）
   type: boolean
   show_subquestion_if: false
-  group: "postgres Container Images"
+  group: "postgres 镜像"
   subquestions:
   - variable: postgres.image
     default: "postgres"
     description: "需要的postgres镜像名称"
     type: string
+    required: true
     label: postgres镜像名称
   - variable: postgres.imageTag
     default: "9.3"
+    required: true
     description: "需要的postgres镜像版本"
     type: string
     label: postgres镜像版本号
-  - variable: service.postgres.nodePort
+
+- variable: service.postgres.nodePort
     default: "5432"
-    description: "端口"
+    description: "数据库端口号"
     type: string
-    label: 镜像端口
+    required: true
+    label: "kdm.rdp.postgre.port"
 
 - variable: postgres.env.password
-  description: "postgres密码"
+  description: "数据库密码"
   default: "postgres"
   type: string
-  group: "postgres Settings"
-  label: "密码"
+  required: true
+  group: "postgres 配置"
+  label: "kdm.rdp.postgre.password"
 - variable: postgres.env.db
-  description: "postgres数据库名称"
+  description: "数据库名称"
   default: "kdm_rdp"
   type: string
-  group: "postgres Settings"
-  label: 数据库名称
+  required: true
+  group: "postgres 配置"
+  label: "kdm.rdp.postgre.name"

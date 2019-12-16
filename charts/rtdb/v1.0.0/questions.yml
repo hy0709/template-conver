@@ -32,7 +32,7 @@ questions:
 
 
 - variable: env.rtdb.host
-  description: "vzdb信息：与库无关所在命名空间内的vzdb服务,如名称为vzdb-xiangjiaba写成 vzdb_xiangjiaba.default"
+  description: "vzdb信息：选择与库无关所在命名空间内的vzdb服务"
   type: string
   required: true
   group: 实时数据库配置"

@@ -1,12 +1,13 @@
+name: kdm-rdp
 apiVersion: v1
-description: rdp最外层Chart.yaml中 
-maintainers:
-- name: zhangsan
-  email: zhangsan@tt.com
-name: rdp
 version: 1.0.0
 appVersion: "4.4.0"
+description: 实时数据平台KDM主程序
 keywords:
 - oge
-- kdm
+- 实时平台
+icon: file://./catalogIcon-rdp.png
+maintainers:
+- name: 奥技异
+  # email: zhangsan@tt.com
 engine: gotpl

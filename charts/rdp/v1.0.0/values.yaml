@@ -12,6 +12,12 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
+env:
+  database: kdm_rdp
+  port: "5432"
+  username: "postgres"
+  password: "postgres"
+
 serviceAccount:
   # Specifies whether a service account should be created
   create: true
@@ -32,7 +38,8 @@ securityContext: {}
 
 service:
   type: NodePort
-  port: 8082
+  internalPort: 8082
+  externalPort: 8082
 
 ingress:
   enabled: false

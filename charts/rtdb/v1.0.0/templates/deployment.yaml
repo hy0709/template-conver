@@ -22,7 +22,7 @@ spec:
       - image: "{{ .Values.rtdb.vzdb.image }}:{{ .Values.rtdb.vzdb.imageTag }}"
         name: {{ .Chart.Name }}
         ports:
-        - name: kdm-rtdb-port
+        - name: kdm-rtdb-vzdb-port
           containerPort: {{ .Values.service.internalPort }}
         env:
         - name: spring.profiles.active

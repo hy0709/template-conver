@@ -3,17 +3,17 @@ kind: Service
 namespace: {{ .Release.Namespace | quote }}
 metadata:
   labels:
-{{ include "rtdb.vzdb.labels" . | indent 4 }}   
-  name: {{ include "rtdb.vzdb.fullname" . }}
+{{ include "rtdb.postgres.labels" . | indent 4 }}   
+  name: {{ include "rtdb.postgres.fullname" . }}
 spec:
   type: {{ .Values.service.type }}
   ports:
-  - name: kdm-rtdb-vzdb-port
+  - name: postgres-port
     port: {{ .Values.service.externalPort }}
-    targetPort: kdm-rtdb-vzdb-port
+    targetPort: postgres-port
     nodePort: {{ .Values.service.externalPort }}
   selector:
-    app: {{ include "rtdb.vzdb.fullname" . }}
+    app: {{ include "rtdb.postgres.fullname" . }}
     release: {{ .Release.Name }}
 status:
   loadBalancer: {}

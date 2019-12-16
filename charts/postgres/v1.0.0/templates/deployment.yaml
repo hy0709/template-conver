@@ -1,25 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
+namespace: {{ .Release.Namespace | quote }}
 metadata:
-  name: postgres
+  name: {{ include "postgres.fullname" . }}
   labels:
-    app: postgres
+{{ include "postgres.labels" . | indent 4 }}   
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-        app: postgres
+      app: {{ include "postgres.fullname" . }}
+      release: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: postgres
+        app: {{ include "postgres.fullname" . }}
+        release: {{ .Release.Name }}
     spec:
       containers:
       - image: "{{ .Values.postgres.image }}:{{ .Values.postgres.imageTag }}"
-        name: postgres
+        name: {{ .Chart.Name }}
         ports:
         - name: postgres-port
-          containerPort: 5432
+          containerPort: {{ .Values.service.internalPort}}
         env:
         - name: POSTGRES_PASSWORD
           value: {{ .Values.postgres.env.password | quote }}
@@ -42,10 +45,10 @@ spec:
           path: /etc/localtime
       - name: postgres-data
         hostPath:
-          path: /home/oge/oge_data/postgres-volume-{{ .Values.service.postgres.nodePort}}/data/
+          path: /home/oge/oge_data/postgres-{{ .Values.service.externalPort}}/data/
       - name: postgres-init
         hostPath:
-          path: /home/oge/oge_data/postgres-volume-{{ .Values.service.postgres.nodePort}}/init/
+          path: /home/oge/oge_data/postgres-{{ .Values.service.externalPort}}/init/
       - name: postgres-backup
         hostPath:
-          path: /home/oge/oge_data/postgres-volume-{{ .Values.service.postgres.nodePort}}/backup/
+          path: /home/oge/oge_data/postgres-{{ .Values.service.externalPort}}/backup/
