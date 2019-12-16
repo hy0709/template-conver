@@ -1,40 +1,59 @@
 apiVersion: apps/v1
 kind: Deployment
+namespace: {{ .Release.Namespace | quote }}
 metadata:
+  name: {{ include "rtdb.vzdb.fullname" . }}
   labels:
-    app: {{ include "kdm.rdp.rtdb.vzdb.name" . }}
-  name: {{ include "kdm.rdp.rtdb.vzdb.name" . }}
+    app:
+{{ include "rtdb.vzdb.labels" . | indent 4 }}   
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ include "kdm.rdp.rtdb.vzdb.name" . }}
+      app: {{ include "rtdb.vzdb.fullname" . }}
+      release: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: {{ include "kdm.rdp.rtdb.vzdb.name" . }}
+        app: {{ include "rtdb.vzdb.fullname" . }}
+        release: {{ .Release.Name }}
     spec:
       containers:
-      - image: "{{ .Values.kdm.rdp.rtdb.vzdb.image }}:{{ .Values.kdm.rdp.rtdb.vzdb.imageTag }}"
-        name: {{ include "kdm.rdp.rtdb.vzdb.containerName" . }}
+      - image: "{{ .Values.rtdb.vzdb.image }}:{{ .Values.rtdb.vzdb.imageTag }}"
+        name: {{ .Chart.Name }}
         ports:
-        - containerPort: {{ .Values.service.internalPort}}
+        - name: kdm-rtdb-port
+          containerPort: {{ .Values.service.internalPort}}
         env:
         - name: spring.profiles.active
           value: {{ .Values.env.consul.active }}
         - name: kdm.reg.host
-          value:  {{ include "env.reg.host" . }}
+          value:  {{ include "reg.host" . }}
+          # value:  {{ include "env.reg.host" . }}
         - name: kdm.rtdb.host
-          value: {{ include "env.rtdb.host" . }}
-        - name: kdm.rtdb.password
-          value: root1234
+          value: {{ include "rtdb.host" . }}
+          # value: {{ include "env.rtdb.host" . }}
         - name: kdm.rtdb.port
-          value: "22235"
-        - name: kdm.rtdb.rule
-          value: ^.{29}[^C].{3}$
+          value:  {{ .Values.env.port}}
+        - name: kdm.rtdb.password
+          value: {{ .Values.env.password}}
         - name: kdm.rtdb.username
-          value: root
+          value: {{ .Values.env.username}}
+        - name: kdm.rtdb.rule
+          value: {{ .Values.env.rule}}
         # - name: spring.application.name
         #   value: kdm-rdp-rtdb-vzdb-xiangjiaba
         resources: {}
+        volumeMounts:
+          - mountPath: /etc/localtime:ro
+            name: rtdb-vzdb-localtime
+          - mountPath: /oge/log
+            name: rtdb-vzdb-log
       restartPolicy: Always
+      volumes:
+      - name: rtdb-vzdb-localtime
+        hostPath:
+          path: /etc/localtime
+      - name: rtdb-vzdb-log
+        hostPath:
+          path: /home/oge/oge_logs/kdm-rdp-rtdb-vzdb-{{ .Values.service.externalPort}}/

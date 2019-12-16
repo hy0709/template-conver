@@ -9,7 +9,7 @@ spec:
   type: {{ .Values.service.vzdb.type }}
   ports:
   - name: kdm-vzdb-port
-    port: {{ .Values.service.vzdb.internalPort }}
+    port: {{ .Values.service.vzdb.externalPort }}
     targetPort: kdm-vzdb-port
     nodePort: {{ .Values.service.vzdb.externalPort }}
   selector:

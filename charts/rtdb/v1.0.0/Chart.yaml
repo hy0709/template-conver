@@ -6,7 +6,7 @@ description: 用于RDP链接VZDB点值数据的与库无关
 keywords:
 - 实时平台
 - oge
-icon: file://./catalogIcon-vzdb.png
+icon: file://./catalogIcon-rtdb-vzdb.png
 # home: https://mariadb.org 项目地址 （可选）
 #sources: （可选  当前chart的下载地址）
 #- https://github.com/bitnami/bitnami-docker-mariadb

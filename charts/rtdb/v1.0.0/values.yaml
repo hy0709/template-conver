@@ -4,19 +4,14 @@
 
 replicaCount: 1
 
-kdm.rdp.rtdb.vzdb:
+rtdb.vzdb:
   # containerName: rtdb-vzdb
   image: "oge/kdm-rtdb-vzdb"
   imageTag: "1.2.0"
 
 env:
   consul.active: reg_consul,alias_none
-  reg.host:
-  rtdb.host:
-
-  name: rtdb
-  host: SERVICE_SERVICE_HOST
-  port: "22235"
+  port: 22235
   username: root
   password: root1234
   rule: ^.{29}[^C].{3}$

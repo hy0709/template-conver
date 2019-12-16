@@ -6,7 +6,7 @@ metadata:
   labels:
 {{ include "vzdb.labels" . | indent 4 }}   
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       app: {{ include "vzdb.fullname" . }}
@@ -53,4 +53,4 @@ spec:
           path: /home/oge/oge_data/vzdb-{{ .Values.service.vzdb.externalPort}}/data/
       - name: vzdb-log
         hostPath:
-          path: /home/oge/oge_logs/vzdb-volume-{{ .Values.service.vzdb.externalPort}}
+          path: /home/oge/oge_logs/vzdb-volume-{{ .Values.service.vzdb.externalPort}}/

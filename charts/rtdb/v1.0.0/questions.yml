@@ -1,76 +1,71 @@
 categories:
 - Oge
 questions:
-- variable: kdm.rdp.rtdb.vzdb.containerName
-  description: "与库无关信息：如桐子林的vzdb与库无关--写成 vzdb_tzl(不得含有中文)"
-  type: string
-  required: true
-  group: "kdm-rdp-rtdb-vzdb 配置"
-  label: 服务名称
+# - variable: kdm.rdp.rtdb.vzdb.containerName
+#   description: "与库无关信息：如桐子林的vzdb与库无关--写成 vzdb_tzl(不得含有中文)"
+#   type: string
+#   required: true
+#   group: "kdm-rdp-rtdb-vzdb 配置"
+#   label: 服务名称
 - variable: env.reg.host
-  description: "consul信息：如名称为consul的服务在default命名空间内--写成 consul.default"
+  description: "consul信息：与库无关所在命名空间内的consul服务名称"
   type: string
   required: true
   group: Consul 配置"
-  label: Consul名称
-
-- variable: env.rtdb.host
-  description: "vzdb信息：如名称为vzdb_xiangjiaba的vzdb服务在default命名空间内--写成 vzdb_xiangjiaba.default"
-  type: string
-  required: true
-  group: 实时数据库配置"
-  label: 实时数据库名称
-
-
+  label: Consul 服务
 
 - variable: rtdb.vzdb.image
   default: "oge/kdm-rtdb-vzdb"
   description: "需要的rtdb-vzdb镜像名称"
   type: string
-  group: "Rtdb Vzdb Images Version"
-  label: rtdb-vzdb镜像名称
+  group: "Rtdb Vzdb 镜像"
+  label: 镜像名称
 - variable: rtdb.vzdb.imageTag
   default: "1.2.0"
   description: "需要的rtdb-vzdb镜像版本"
   type: string
-  group: "Rtdb Vzdb Images Version"
-  label: rtdb-vzdb镜像版本号
-- variable: service.vzdb.port
-  default: "30001"
-  description: "rtdb-vzdb端口"
+  group: "Rtdb Vzdb 镜像"
+  label: 镜像版本号
+- variable: service.externalPort
+  default: "8040"
+  description: "本服务的HTTP端口号"
   type: string
-  group: "Rtdb Vzdb Settings"
-  label: rtdb镜像端口
+  group: "Rtdb Vzdb 镜像"
+  label: 服务端口
 
 
-
-
-- variable: rtdb.env.host
-  description: "格式 vzdb服务.vzdb所在命名空间"
+# - variable: rtdb.env.host
+#   description: "格式 vzdb服务.vzdb所在命名空间"
+#   type: string
+#   group: "Rtdb Vzdb Settings"
+#   label: vzdb名称
+- variable: env.rtdb.host
+  description: "vzdb信息：与库无关所在命名空间内的vzdb服务,如名称为vzdb-xiangjiaba写成 vzdb_xiangjiaba.default"
   type: string
-  group: "Rtdb Vzdb Settings"
-  label: vzdb名称
-- variable: rtdb.env.port
-  default: "22235"
-  description: "vzdb端口"
-  type: string
-  group: "Rtdb Vzdb Settings"
-  label: vzdb镜像端口
-- variable: rtdb.env.username
+  required: true
+  group: 实时数据库配置"
+  label: 实时库
+- variable: env.port
+  default: 22235
+  description: "数据VZDB数据库的端口号"
+  type: int
+  group: "实时数据库配置"
+  label: 实时库端口号
+- variable: env.username
   default: "root"
-  description: "Password used by the MySQL root user"
+  description: "数据VZDB数据库用户名"
   type: string
-  group: "Rtdb Vzdb Settings"
-  label: vzdb用户名
-- variable: rtdb.env.password
+  group: "实时数据库配置"
+  label: 实时库用户名
+- variable: env.password
   default: "root1234"
-  description: "Password used by the MySQL root user."
+  description: "数据VZDB数据库的密码"
   type: string
-  group: "Rtdb Vzdb Settings"
-  label: vzdb密码
-- variable: rtdb.env.rule
+  group: 实时数据库配置"
+  label: 实时库密码
+- variable: env.rule
   default: "^.{29}[^C].{3}$"
   description: "该实时库所能处理的KKS编码规则，如：^EB000.{24}[^C].{3}$"
   type: string
-  group: "Rtdb Vzdb Settings"
+  group: "实时数据库配置"
   label: 与库无关编码规则
