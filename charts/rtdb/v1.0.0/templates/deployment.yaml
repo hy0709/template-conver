@@ -26,7 +26,7 @@ spec:
           containerPort: {{ .Values.service.internalPort }}
         env:
         - name: kdm.rtdb.host
-          value: "hoosst"
+          value: {{ include "rtdb.host" . }}
         - name: kdm.rtdb.port
           value: {{ .Values.env.port | quote }}
         - name: kdm.rtdb.password
