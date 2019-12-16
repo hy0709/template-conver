@@ -4,10 +4,10 @@
 
 replicaCount: 1
 
-rtdb.vzdb:
-  # containerName: rtdb-vzdb
-  image: "oge/kdm-rtdb-vzdb"
-  imageTag: "1.2.0"
+rtdb:
+  vzdb:
+    image: "oge/kdm-rtdb-vzdb"
+    imageTag: "1.2.0"
 
 env:
   consul:
