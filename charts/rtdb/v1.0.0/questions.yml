@@ -1,22 +1,32 @@
 categories:
 - Oge
 questions:
+- variable: env.reg.host
+  description: "consul信息：与库无关所在命名空间内的consul服务名称"
+  type: string
+  required: true
+  group: Consul 配置"
+  label: Consul 服务
+
 - variable: rtdb.vzdb.image
   default: "oge/kdm-rtdb-vzdb"
   description: "需要的rtdb-vzdb镜像名称"
   type: string
+  required: true
   group: "Rtdb Vzdb 镜像"
   label: 镜像名称
 - variable: rtdb.vzdb.imageTag
   default: "1.2.0"
   description: "需要的rtdb-vzdb镜像版本"
   type: string
+  required: true
   group: "Rtdb Vzdb 镜像"
   label: 镜像版本号
 - variable: service.externalPort
   default: "8040"
   description: "本服务的HTTP端口号"
   type: string
+  required: true
   group: "Rtdb Vzdb 镜像"
   label: 服务端口
 
@@ -31,23 +41,27 @@ questions:
   default: "22235"
   description: "数据VZDB数据库的端口号"
   type: string
+  required: true
   group: "实时数据库配置"
   label: 实时库端口号
 - variable: env.username
   default: "root"
   description: "数据VZDB数据库用户名"
   type: string
+  required: true
   group: "实时数据库配置"
   label: 实时库用户名
 - variable: env.password
   default: "root1234"
   description: "数据VZDB数据库的密码"
   type: string
+  required: true
   group: 实时数据库配置"
   label: 实时库密码
 - variable: env.rule
   default: "^.{29}[^C].{3}$"
   description: "该实时库所能处理的KKS编码规则，如：^EB000.{24}[^C].{3}$"
   type: string
+  required: true
   group: "实时数据库配置"
   label: 与库无关编码规则
