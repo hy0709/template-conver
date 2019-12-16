@@ -12,7 +12,7 @@ rtdb.vzdb:
 env:
   consul:
     active: reg_consul,alias_none
-  port: 22235
+  port: "22235"
   username: root
   password: root1234
   rule: ^.{29}[^C].{3}$

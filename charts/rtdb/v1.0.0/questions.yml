@@ -47,9 +47,9 @@ questions:
   group: 实时数据库配置"
   label: 实时库
 - variable: env.port
-  default: 22235
+  default: "22235"
   description: "数据VZDB数据库的端口号"
-  type: int
+  type: string
   group: "实时数据库配置"
   label: 实时库端口号
 - variable: env.username
